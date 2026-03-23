@@ -41,7 +41,7 @@ export default function RootLayout({
       <body className={`${inter.className} ${playfair.variable} min-h-screen bg-stone-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 selection:bg-blue-200 selection:text-blue-900 dark:selection:bg-blue-900/40 dark:selection:text-blue-100`}>
         <I18nProvider>
           <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-3xl px-4 transition-all duration-300">
-            <div className="flex h-14 items-center justify-between px-6 rounded-full bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.03)] ring-1 ring-neutral-900/5 dark:ring-white/10">
+            <div className="flex h-14 items-center justify-between px-4 sm:px-6 rounded-full bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.03)] ring-1 ring-neutral-900/5 dark:ring-white/10">
               <Link href="/" className="flex items-center space-x-2 font-bold text-xl text-blue-700 dark:text-blue-400 font-[family-name:var(--font-playfair)] tracking-tight hover:scale-105 active:scale-95 transition-transform">
                 🇷🇺 <span className="hidden sm:inline-block">FIO Parser</span>
               </Link>
