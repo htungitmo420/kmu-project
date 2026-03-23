@@ -12,7 +12,7 @@ export default function Home() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   return (
-    <div className="flex flex-col space-y-8 lg:space-y-12 items-center lg:items-start justify-center w-full max-w-[1100px] mx-auto">
+    <main className="flex flex-col space-y-8 lg:space-y-12 items-center lg:items-start justify-center w-full max-w-[1100px] mx-auto">
 
       {/* Header Area */}
       <div className="w-full lg:max-w-2xl flex flex-col md:flex-row md:items-start justify-between gap-6">
@@ -54,6 +54,6 @@ export default function Home() {
         </div>
       </div>
 
-    </div>
+    </main>
   );
 }

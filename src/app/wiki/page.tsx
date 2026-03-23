@@ -22,7 +22,7 @@ export default function WikiPage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto space-y-12 pb-12">
+    <main className="max-w-5xl mx-auto space-y-12 pb-12">
       <div className="text-center space-y-6 pt-12 pb-8">
         <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-neutral-900 dark:text-neutral-50 flex flex-col items-center justify-center gap-4 font-[family-name:var(--font-playfair)] drop-shadow-sm">
           <span className="p-4 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)] border border-neutral-100 dark:border-neutral-800">
@@ -105,6 +105,6 @@ export default function WikiPage() {
           </section>
         ))}
       </div>
-    </div>
+    </main>
   );
 }
