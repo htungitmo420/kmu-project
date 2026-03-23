@@ -11,7 +11,21 @@ const playfair = Playfair_Display({ subsets: ['latin', 'cyrillic'], variable: '-
 
 export const metadata: Metadata = {
   title: 'Russian FIO Parser & Etiquette Guide',
-  description: 'Công cụ tra cứu và phân tích cách xưng hô Tiếng Nga chuẩn mực.',
+  description: 'Анализатор русских ФИО и справочник по этикету обращений.',
+  keywords: ['russian name parser', 'fio parser', 'russian etiquette', 'russian patronymic', 'tiếng nga', 'xưng hô tiếng nga', 'ФИО', 'русский язык'],
+  openGraph: {
+    title: 'Russian FIO Parser & Etiquette Guide',
+    description: 'Инструмент для анализа русских ФИО и правил этикета. Công cụ tra cứu và phân tích cách xưng hô Tiếng Nga chuẩn mực.',
+    url: 'https://rufio-parser.vercel.app',
+    siteName: 'rUFIO Parser',
+    locale: 'vi_VN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Russian FIO Parser & Etiquette Guide',
+    description: 'Инструмент для анализа русских ФИО и правил этикета. Công cụ tra cứu và phân tích cách xưng hô Tiếng Nga chuẩn mực.',
+  },
   icons: {
     icon: '/logo.png',
   },
