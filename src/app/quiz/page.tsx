@@ -74,6 +74,61 @@ const quizData: Question[] = [
     explanationEn: "Official internal documents usually require the full Last + First + Patronymic.",
     explanationVi: "Các văn bản nội bộ chính thức ở công ty yêu cầu đầy đủ Họ + Tên + Tên đệm.",
     explanationRu: "Официальные внутренние документы обычно требуют полного ФИО (Фамилия Имя Отчество)."
+  },
+  {
+    id: 6,
+    scenarioEn: "You are at university. Your seminar instructor is a 25-year-old graduate student named Anna Ivanovna. How should you address her?",
+    scenarioVi: "Tại trường, giảng viên đứng lớp của bạn là một nghiên cứu sinh trẻ 25 tuổi tên là Anna Ivanovna. Bạn xưng hô thế nào?",
+    scenarioRu: "Вы в университете. Ваш преподаватель семинара — 25-летняя аспирантка Анна Ивановна. Как к ней обращаться?",
+    options: ["Анна!", "Аня!", "Анна Ивановна!"],
+    correctIndex: 2,
+    explanationEn: "In academic settings, even young instructors must be addressed by First Name + Patronymic to maintain strict professional boundaries.",
+    explanationVi: "Trong môi trường giáo dục, dù giảng viên có trẻ tuổi đến mấy thì bạn vẫn BẮT BUỘC phải gọi bằng Tên + Tên đệm để giữ sự tôn trọng tuyệt đối.",
+    explanationRu: "В академической среде даже к молодым преподавателям необходимо обращаться по имени и отчеству для соблюдения субординации."
+  },
+  {
+    id: 7,
+    scenarioEn: "You are asking your friend's mother, Yelena Vladimirovna, how she is doing. Which sentence is grammatically and culturally correct?",
+    scenarioVi: "Bạn muốn hỏi thăm sức khỏe mẹ của bạn mình, bác Yelena Vladimirovna. Câu nào dưới đây là chuẩn xác nhất cả về ngữ pháp lẫn văn hóa?",
+    scenarioRu: "Вы спрашиваете у матери вашего друга, Елены Владимировны, как у нее дела. Какая фраза грамматически и культурно правильная?",
+    options: ["Как твои дела, Елена Владимировна?", "Как ваши дела, Елена Владимировна?", "Как дела, тётя Лена?"],
+    correctIndex: 1,
+    explanationEn: "You must use the formal plural 'Вы' (ваши) when speaking to an older person or whenever you use First Name + Patronymic.",
+    explanationVi: "Bắt buộc phải dùng đại từ kính trọng 'Вы' (ваши - của ngài/bác) khi nói chuyện với người lớn tuổi hoặc giới chức sắc ở Nga.",
+    explanationRu: "При обращении к старшим или использовании имени и отчества необходимо использовать уважительное местоимение 'Вы'."
+  },
+  {
+    id: 8,
+    scenarioEn: "You are writing a formal application ADDRESSED TO the Director, Sergey Nikolaevich Ivanov (Заявление...). Which declension form is correct?",
+    scenarioVi: "Bạn đang viết Đơn từ GỬI CHO Giám đốc Sergey Nikolaevich Ivanov (Заявление...). Khối từ nào được chia đúng ngữ pháp?",
+    scenarioRu: "Вы пишете официальное заявление НА ИМЯ директора, Сергея Николаевича Иванова (Заявление...). Какая форма склонения верна?",
+    options: ["Директору Сергею Николаевичу Иванову", "Директора Сергея Николаевича Иванова", "Директору Сергей Николаевич Иванов"],
+    correctIndex: 0,
+    explanationEn: "In formal requests directed TO someone, the Dative case (Дательный падеж) must be applied to the entire full name.",
+    explanationVi: "Trong các lá đơn gửi ĐẾN ai đó, toàn bộ cấu trúc (Họ, Tên và Tên đệm) đều phải được biến cách ở Cách 3 (Dative case).",
+    explanationRu: "В официальных заявлениях, направляемых КОМУ-ЛИБО, всё ФИО должно склоняться в дательном падеже."
+  },
+  {
+    id: 9,
+    scenarioEn: "Your boss is a French national named Jean Dupont working in a Russian company. He does not have a patronymic. How do you formally start an email to him?",
+    scenarioVi: "Sếp của bạn là người Pháp tên là Jean Dupont đang làm việc tại Nga. Ông ấy không có Tên đệm (Patronymic). Bạn mở đầu email thế nào?",
+    scenarioRu: "Ваш начальник — француз по имени Жан Дюпон, работающий в российской компании. У него нет отчества. Как официально начать письмо к нему?",
+    options: ["Уважаемый Жан!", "Уважаемый господин Дюпон!", "Уважаемый Жан Дюпонович!"],
+    correctIndex: 1,
+    explanationEn: "For foreigners without a patronymic, use 'Уважаемый господин [Last Name]'. Never invent a patronymic.",
+    explanationVi: "Với người nước ngoài không có Tên đệm, chuẩn mực nhất là dùng 'Уважаемый господин + [Họ]' (Kính thưa ngài...). Tuyệt đối không tự chế ra Tên đệm.",
+    explanationRu: "Для иностранцев без отчества используйте форму 'Уважаемый господин [Фамилия]'. Никогда не выдумывайте отчество."
+  },
+  {
+    id: 10,
+    scenarioEn: "You are reading an official contract. The signature block says 'С.В. Сидоров'. In Russian culture, what does the 'В.' strictly represent?",
+    scenarioVi: "Bạn đang đọc một bản hợp đồng. Ở phần chữ ký ghi 'С.В. Сидоров'. Theo văn hóa Nga, chữ 'В.' đại diện cho điều gì?",
+    scenarioRu: "Вы читаете официальный договор. В блоке подписи указано 'С.В. Сидоров'. Что означает буква 'В.' в русской культуре?",
+    options: ["His middle name (like in English)", "His second last name", "His father's given name (Patronymic)"],
+    correctIndex: 2,
+    explanationEn: "In Russian signatures, the initials signify the First Name and the Patronymic (Отчество), which is derived directly from the father's given name.",
+    explanationVi: "Trong chữ ký tiếng Nga, các chữ cái viết tắt luôn là Tên gọi và Tên đệm (Отчество) - phần từ được tạo thành trực tiếp dựa trên Húy danh của người cha.",
+    explanationRu: "В русских подписях инициалы означают Имя и Отчество, которое напрямую образуется от имени отца."
   }
 ];
 
