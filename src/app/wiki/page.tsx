@@ -1,8 +1,9 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, Coffee, Briefcase, FileText, MessageCircle, AlertCircle } from 'lucide-react';
+import { BookOpen, Coffee, Briefcase, FileText, MessageCircle, AlertCircle, Copy, Check, Volume2 } from 'lucide-react';
 import { useAppStore } from "@/lib/store";
+import { useState } from "react";
 import { getDynamicWikiContext } from "@/data/wiki-data";
 import { useTranslations } from "@/lib/i18n/LanguageContext";
 
@@ -10,6 +11,19 @@ export default function WikiPage() {
   const { currentResult } = useAppStore();
   const { t, locale } = useTranslations();
   const wikiData = getDynamicWikiContext(currentResult, locale as "vi" | "en" | "ru" | "fr");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopy = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  const handleSpeak = (text: string) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ru-RU';
+    window.speechSynthesis.speak(utterance);
+  };
 
   const getIcon = (iconName: string) => {
     switch(iconName) {
@@ -22,8 +36,12 @@ export default function WikiPage() {
   };
 
   return (
-    <main className="max-w-5xl mx-auto space-y-12 pb-12">
-      <div className="text-center space-y-6 pt-12 pb-8">
+    <main className="max-w-5xl mx-auto space-y-12 pb-12 pt-4 md:pt-8 relative">
+      {/* Background ambient orbs */}
+      <div className="absolute top-10 right-0 md:right-1/4 w-[30rem] h-[30rem] bg-emerald-400/20 dark:bg-emerald-600/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-in fade-in duration-1000" />
+      <div className="absolute bottom-40 -left-10 md:left-1/4 w-[25rem] h-[25rem] bg-amber-400/15 dark:bg-amber-600/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-in fade-in duration-1000 delay-700" />
+
+      <div className="text-center space-y-6 pt-4 md:pt-12 pb-8">
         <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-neutral-900 dark:text-neutral-50 flex flex-col items-center justify-center gap-4 font-[family-name:var(--font-playfair)] drop-shadow-sm">
           <span className="p-4 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)] border border-neutral-100 dark:border-neutral-800">
             <BookOpen className="w-12 h-12 text-blue-600 dark:text-blue-400" />
@@ -93,9 +111,21 @@ export default function WikiPage() {
                       <p className="text-xs font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest mb-2.5">{t('wiki.rule')}</p>
                       <p className="text-neutral-700 dark:text-neutral-300 font-medium text-lg leading-relaxed">{ctx.rule}</p>
                     </div>
-                    <div className="bg-blue-50/50 dark:bg-blue-900/10 p-5 md:p-6 rounded-2xl border border-blue-100/50 dark:border-blue-900/30 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 transition-colors mt-auto relative overflow-hidden">
+                    <div className="bg-blue-50/50 dark:bg-blue-900/10 p-5 md:p-6 rounded-2xl border border-blue-100/50 dark:border-blue-900/30 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 transition-colors mt-auto relative overflow-hidden group/example">
                       <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-500 dark:bg-blue-600 rounded-l-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <p className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-3 pl-1">{t('wiki.example')}</p>
+                      
+                      <div className="flex items-start justify-between mb-3 pl-1">
+                        <p className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mt-1">{t('wiki.example')}</p>
+                        <div className="flex gap-1.5 opacity-100 lg:opacity-0 lg:group-hover/example:opacity-100 transition-opacity">
+                          <button onClick={() => handleSpeak(ctx.example)} className="p-1.5 bg-blue-100/80 dark:bg-blue-800/40 hover:bg-blue-200 dark:hover:bg-blue-700 text-blue-700 dark:text-blue-300 rounded-md transition-colors active:scale-95" title="Nghe phát âm">
+                            <Volume2 className="w-4 h-4" />
+                          </button>
+                          <button onClick={() => handleCopy(ctx.example, ctx.id)} className="p-1.5 bg-blue-100/80 dark:bg-blue-800/40 hover:bg-blue-200 dark:hover:bg-blue-700 text-blue-700 dark:text-blue-300 rounded-md transition-colors active:scale-95" title="Sao chép">
+                            {copiedId === ctx.id ? <Check className="w-4 h-4 text-green-600 dark:text-green-400" /> : <Copy className="w-4 h-4" />}
+                          </button>
+                        </div>
+                      </div>
+
                       <p className="text-blue-900 dark:text-blue-100 font-mono text-base md:text-lg leading-relaxed pl-1">&quot;{ctx.example}&quot;</p>
                     </div>
                   </CardContent>

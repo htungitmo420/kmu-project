@@ -12,6 +12,72 @@ const defaultFio: FIOParseResult = {
 
 type Locale = 'vi' | 'en' | 'ru' | 'fr';
 
+function declineRuName(name: string, type: 'last' | 'first' | 'patronymic', gender: 'M' | 'F', caseChoice: 'genitive' | 'dative'): string {
+  if (!name) return "";
+  const lower = name.toLowerCase();
+
+  if (gender === 'M') {
+    if (caseChoice === 'genitive') { // Cách 2 (от кого?)
+      if (type === 'last') {
+        if (lower.endsWith('ов') || lower.endsWith('ев') || lower.endsWith('ин') || lower.endsWith('ын')) return name + 'а';
+        if (lower.endsWith('ий')) return name.slice(0, -2) + 'ого';
+        if (lower.endsWith('ой')) return name.slice(0, -2) + 'ого';
+      }
+      if (type === 'first') {
+        if (lower.endsWith('й') || lower.endsWith('ь')) return name.slice(0, -1) + 'я';
+        if (lower.endsWith('а') || lower.endsWith('я')) return name.slice(0, -1) + 'и';
+        if (lower.match(/[бвгджзклмнпрстфхцчшщ]$/)) return name + 'а';
+      }
+      if (type === 'patronymic') {
+        if (lower.endsWith('ич')) return name + 'а';
+      }
+    } else if (caseChoice === 'dative') { // Cách 3 (кому?)
+      if (type === 'last') {
+        if (lower.endsWith('ов') || lower.endsWith('ев') || lower.endsWith('ин') || lower.endsWith('ын')) return name + 'у';
+        if (lower.endsWith('ий')) return name.slice(0, -2) + 'ому';
+        if (lower.endsWith('ой')) return name.slice(0, -2) + 'ому';
+      }
+      if (type === 'first') {
+        if (lower.endsWith('й') || lower.endsWith('ь')) return name.slice(0, -1) + 'ю';
+        if (lower.endsWith('а') || lower.endsWith('я')) return name.slice(0, -1) + 'е';
+        if (lower.match(/[бвгджзклмнпрстфхцчшщ]$/)) return name + 'у';
+      }
+      if (type === 'patronymic') {
+        if (lower.endsWith('ич')) return name + 'у';
+      }
+    }
+  } else { // F
+    if (caseChoice === 'genitive') { // Cách 2 (от кого?)
+      if (type === 'last') {
+        if (lower.endsWith('ва') || lower.endsWith('на')) return name.slice(0, -1) + 'ой';
+        if (lower.endsWith('ая')) return name.slice(0, -2) + 'ой';
+      }
+      if (type === 'first') {
+        if (lower.endsWith('ия')) return name.slice(0, -1) + 'и';
+        if (lower.endsWith('а')) return name.slice(0, -1) + (lower.match(/[гжкхчшщ]а$/) ? 'и' : 'ы');
+        if (lower.endsWith('я') || lower.endsWith('ь')) return name.slice(0, -1) + 'и';
+      }
+      if (type === 'patronymic') {
+        if (lower.endsWith('на')) return name.slice(0, -1) + 'ны';
+      }
+    } else if (caseChoice === 'dative') { // Cách 3 (кому?)
+      if (type === 'last') {
+        if (lower.endsWith('ва') || lower.endsWith('на')) return name.slice(0, -1) + 'ой';
+        if (lower.endsWith('ая')) return name.slice(0, -2) + 'ой';
+      }
+      if (type === 'first') {
+        if (lower.endsWith('ия')) return name.slice(0, -1) + 'и';
+        if (lower.endsWith('а') || lower.endsWith('я')) return name.slice(0, -1) + 'е';
+        if (lower.endsWith('ь')) return name.slice(0, -1) + 'и';
+      }
+      if (type === 'patronymic') {
+        if (lower.endsWith('на')) return name.slice(0, -1) + 'не';
+      }
+    }
+  }
+  return name; // Fallback
+}
+
 export function getDynamicWikiContext(fioResult: FIOParseResult | null, locale: Locale = 'ru') {
   const fio = fioResult || defaultFio;
 
@@ -174,10 +240,10 @@ export function getDynamicWikiContext(fioResult: FIOParseResult | null, locale: 
       icon: "file-text",
       description: t.descOfficial,
       contexts: [
-        { id: "forms", name: t.forms, rule: t.ruleForms, example: `Заявление от: ${lastName} ${firstName} ${patronymic}` },
+        { id: "forms", name: t.forms, rule: t.ruleForms, example: `Заявление от: ${declineRuName(lastName, 'last', gender, 'genitive')} ${declineRuName(firstName, 'first', gender, 'genitive')} ${declineRuName(patronymic, 'patronymic', gender, 'genitive')}`.trim() },
         { id: "contracts", name: t.contracts, rule: t.ruleContracts, example: `ИП ${lastName} ${firstName} ${patronymic}, именуемый в дальнейшем "Заказчик"...` },
         { id: "gov_forms", name: t.govForms, rule: t.ruleGovForms, example: `ФИО: ${lastName} ${firstName} ${patronymic}` },
-        { id: "confirmation", name: t.confirm, rule: t.ruleConfirm, example: `Справка выдана: ${lastName} ${firstName} ${patronymic} в том, что...` }
+        { id: "confirmation", name: t.confirm, rule: t.ruleConfirm, example: `Справка выдана: ${declineRuName(lastName, 'last', gender, 'dative')} ${declineRuName(firstName, 'first', gender, 'dative')} ${declineRuName(patronymic, 'patronymic', gender, 'dative')} в том, что...`.replace('   ', ' ').replace('  ', ' ') }
       ]
     },
     {
