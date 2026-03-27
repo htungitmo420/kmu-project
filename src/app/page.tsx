@@ -12,7 +12,10 @@ export default function Home() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   return (
-    <main className="flex flex-col space-y-8 lg:space-y-12 items-center lg:items-start justify-center w-full max-w-[1100px] mx-auto">
+    <main className="flex flex-col space-y-8 lg:space-y-12 items-center lg:items-start justify-center w-full max-w-[1100px] mx-auto relative">
+      {/* Background ambient orbs */}
+      <div className="absolute top-0 md:top-20 -left-10 md:-left-20 w-[30rem] h-[30rem] bg-indigo-400/20 dark:bg-indigo-600/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-in fade-in duration-1000" />
+      <div className="absolute top-1/2 right-0 md:-right-20 w-[35rem] h-[35rem] bg-rose-400/10 dark:bg-rose-600/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-in fade-in duration-1000 delay-500" />
 
       {/* Header Area */}
       <div className="w-full lg:max-w-2xl flex flex-col md:flex-row md:items-start justify-between gap-6">
