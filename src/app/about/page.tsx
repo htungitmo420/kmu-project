@@ -57,13 +57,17 @@ export default function AboutPage() {
 
       <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
         {/* Tech Stack Section */}
-        <section className="space-y-6">
-          <div className="border-b border-neutral-200/60 dark:border-neutral-800/60 pb-4 space-y-2.5">
-            <h2 className="text-3xl font-bold flex items-center gap-3.5 text-neutral-900 dark:text-neutral-100 font-[family-name:var(--font-playfair)] tracking-tight">
-              <span className="p-2.5 bg-neutral-100 dark:bg-neutral-900 rounded-2xl border border-neutral-200/50 dark:border-neutral-800/50 shadow-sm"><Zap className="w-6 h-6 text-amber-500" /></span>
+        <section className="space-y-8">
+          <div className="border-b border-neutral-200/60 dark:border-neutral-800/60 pb-6 space-y-4 flex flex-col items-center text-center">
+            <div className="p-3 bg-neutral-100 dark:bg-neutral-900/80 rounded-2xl border border-neutral-200/50 dark:border-neutral-800/50 shadow-sm inline-flex">
+              <Zap className="w-8 h-8 text-amber-500" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-neutral-100 font-[family-name:var(--font-playfair)] tracking-tight">
               {t('about.tech.title') || 'Công Nghệ Tối Ưu'}
             </h2>
-            <p className="text-lg text-neutral-500 dark:text-neutral-400 font-medium leading-relaxed">{t('about.tech.desc') || 'Được xây dựng trên nền tảng web hiện đại với kiến trúc UI UX PRO MAX.'}</p>
+            <p className="text-base md:text-lg text-neutral-500 dark:text-neutral-400 font-medium leading-relaxed max-w-2xl">
+              {t('about.tech.desc') || 'Được xây dựng trên nền tảng web hiện đại với kiến trúc UI UX PRO MAX.'}
+            </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {technologies.map((tech) => (
@@ -83,13 +87,17 @@ export default function AboutPage() {
         </section>
 
         {/* Team Section */}
-        <section className="space-y-6">
-          <div className="border-b border-neutral-200/60 dark:border-neutral-800/60 pb-4 space-y-2.5">
-            <h2 className="text-3xl font-bold flex items-center gap-3.5 text-neutral-900 dark:text-neutral-100 font-[family-name:var(--font-playfair)] tracking-tight">
-              <span className="p-2.5 bg-neutral-100 dark:bg-neutral-900 rounded-2xl border border-neutral-200/50 dark:border-neutral-800/50 shadow-sm"><Users className="w-6 h-6 text-blue-500" /></span>
+        <section className="space-y-8">
+          <div className="border-b border-neutral-200/60 dark:border-neutral-800/60 pb-6 space-y-4 flex flex-col items-center text-center">
+            <div className="p-3 bg-neutral-100 dark:bg-neutral-900/80 rounded-2xl border border-neutral-200/50 dark:border-neutral-800/50 shadow-sm inline-flex">
+              <Users className="w-8 h-8 text-blue-500" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-neutral-100 font-[family-name:var(--font-playfair)] tracking-tight">
               {t('about.team.title') || 'Đội Ngũ Phát Triển'}
             </h2>
-            <p className="text-lg text-neutral-500 dark:text-neutral-400 font-medium leading-relaxed">{t('about.team.desc') || 'Nhóm tác giả và các thành viên cốt lõi đứng sau dự án.'}</p>
+            <p className="text-base md:text-lg text-neutral-500 dark:text-neutral-400 font-medium leading-relaxed max-w-2xl">
+              {t('about.team.desc') || 'Nhóm tác giả và các thành viên cốt lõi đứng sau dự án.'}
+            </p>
           </div>
           <div className="space-y-4">
             {teamMembers.map((member) => (

@@ -40,15 +40,13 @@ export default function RootLayout({
     <html lang="vi" className="scroll-smooth">
       <body className={`${inter.className} ${playfair.variable} min-h-screen bg-stone-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 selection:bg-blue-200 selection:text-blue-900 dark:selection:bg-blue-900/40 dark:selection:text-blue-100`}>
         <I18nProvider>
-          <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-3xl px-4 transition-all duration-300">
-            <div className="flex h-14 items-center justify-between px-4 sm:px-6 rounded-full bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.03)] ring-1 ring-neutral-900/5 dark:ring-white/10 overflow-hidden">
-              <Link href="/" className="flex shrink-0 items-center space-x-2 font-bold text-xl text-blue-700 dark:text-blue-400 font-[family-name:var(--font-playfair)] tracking-tight hover:scale-105 active:scale-95 transition-transform mr-3">
+          <header className="fixed top-2 sm:top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-3xl px-2 sm:px-4 transition-all duration-300">
+            <div className="flex h-14 items-center justify-between px-3 sm:px-6 rounded-[2rem] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-lg ring-1 ring-neutral-900/5 dark:ring-white/10">
+              <Link href="/" className="flex shrink-0 items-center space-x-2 font-bold text-lg sm:text-xl text-blue-700 dark:text-blue-400 font-[family-name:var(--font-playfair)] tracking-tight hover:scale-105 active:scale-95 transition-transform mr-2 sm:mr-4">
                 🇷🇺 <span className="hidden sm:inline-block">FIO Parser</span>
               </Link>
-              <div className="flex items-center space-x-3 sm:space-x-5 flex-1 min-w-0 justify-end">
-                <div className="flex-[1_1_auto] min-w-0 flex justify-end">
-                  <HeaderNav />
-                </div>
+              <div className="flex items-center space-x-3 sm:space-x-5 flex-1 min-w-0">
+                <HeaderNav />
                 <div className="w-px h-4 bg-neutral-200 dark:bg-neutral-800 shrink-0" />
                 <div className="shrink-0 flex items-center">
                   <LanguageSwitcher />

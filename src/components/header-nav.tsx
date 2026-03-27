@@ -14,7 +14,7 @@ export function HeaderNav() {
   ];
 
   return (
-    <nav className="flex flex-nowrap items-center space-x-3 sm:space-x-6 text-[12px] sm:text-sm font-medium overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+    <nav className="flex flex-1 min-w-0 flex-nowrap items-center md:justify-end space-x-4 sm:space-x-6 text-[13px] sm:text-sm font-medium overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
       {navItems.map((item) => (
         <Link 
           key={item.href} 
