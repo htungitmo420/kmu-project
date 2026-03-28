@@ -161,5 +161,6 @@
 }
 
 .animate-led {
-  animation: led-glow 3s linear infinite;
-}
+  animation: led-glow 3s linear infinite !important;
+  color: #ef4444;
+}
