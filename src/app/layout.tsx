@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { I18nProvider } from '@/lib/i18n/LanguageContext';
 import { LanguageSwitcher } from '@/components/language-switcher';
 import { HeaderNav } from '@/components/header-nav';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 const playfair = Playfair_Display({ subsets: ['latin', 'cyrillic'], variable: '--font-playfair' });
@@ -58,6 +59,7 @@ export default function RootLayout({
             {children}
           </main>
         </I18nProvider>
+        <Analytics />
       </body>
     </html>
   );
