@@ -54,9 +54,9 @@ export default function RootLayout({
     <html lang="vi" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.className} ${playfair.variable} min-h-screen flex flex-col bg-stone-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 selection:bg-blue-200 selection:text-blue-900 dark:selection:bg-blue-900/40 dark:selection:text-blue-100 relative`}>
         <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-          <div className="absolute top-[-10%] left-[-10%] w-[50rem] h-[50rem] bg-indigo-500/30 dark:bg-indigo-600/30 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-70 animate-pulse" style={{ animationDuration: '7s' }} />
-          <div className="absolute top-[20%] right-[-10%] w-[45rem] h-[45rem] bg-rose-500/30 dark:bg-rose-500/30 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-70 animate-pulse" style={{ animationDuration: '9s', animationDelay: '2s' }} />
-          <div className="absolute bottom-[-10%] left-[20%] w-[50rem] h-[50rem] bg-blue-500/30 dark:bg-blue-600/30 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-70 animate-pulse" style={{ animationDuration: '11s', animationDelay: '4s' }} />
+          <div className="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-indigo-500/25 dark:bg-indigo-600/20 rounded-full blur-[90px] opacity-70 animate-pulse will-change-transform transform-gpu" style={{ animationDuration: '10s' }} />
+          <div className="absolute top-[20%] right-[-10%] w-[35rem] h-[35rem] bg-rose-500/25 dark:bg-rose-500/20 rounded-full blur-[90px] opacity-70 animate-pulse will-change-transform transform-gpu" style={{ animationDuration: '12s', animationDelay: '2s' }} />
+          <div className="absolute bottom-[-10%] left-[20%] w-[40rem] h-[40rem] bg-blue-500/25 dark:bg-blue-600/20 rounded-full blur-[90px] opacity-70 animate-pulse will-change-transform transform-gpu" style={{ animationDuration: '14s', animationDelay: '4s' }} />
         </div>
         <script
           type="application/ld+json"
@@ -77,7 +77,7 @@ export default function RootLayout({
             })
           }}
         />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <I18nProvider>
           <header className="fixed top-2 sm:top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-2 sm:px-4 transition-all duration-300">
             <div className="flex h-14 items-center justify-between px-3 sm:px-5 rounded-[2rem] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-lg ring-1 ring-neutral-900/5 dark:ring-white/10">

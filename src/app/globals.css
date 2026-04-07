@@ -170,6 +170,9 @@
   animation: none !important;
   mix-blend-mode: normal !important;
   display: block;
+  will-change: transform, opacity, clip-path;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Light to Dark: New root is dark (expanding), needs to be on top */
