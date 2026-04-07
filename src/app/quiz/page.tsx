@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useTranslations } from '@/lib/i18n/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { CheckCircle2, XCircle, Trophy, ArrowRight, RefreshCcw } from 'lucide-react';
+import { CheckCircle2, XCircle, Trophy, ArrowRight, RefreshCcw, Medal } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface Question {
@@ -194,6 +194,15 @@ export default function QuizPage() {
   const [isAnswered, setIsAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const answerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isAnswered && answerRef.current) {
+      setTimeout(() => {
+        answerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  }, [isAnswered]);
 
   const currentQ = quizData[currentQIndex];
 
@@ -245,30 +254,112 @@ export default function QuizPage() {
     setIsFinished(false);
   };
 
+  useEffect(() => {
+    if (isFinished) {
+      const duration = 2000;
+      const end = Date.now() + duration;
+
+      const frame = () => {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: ['#2563eb', '#3b82f6', '#f59e0b', '#10b981']
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: ['#2563eb', '#3b82f6', '#f59e0b', '#10b981']
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      };
+      frame();
+    }
+  }, [isFinished]);
+
   if (isFinished) {
+    let resultMessage = '';
+    let resultColor = '';
+    let iconColor = '';
+    let TrophyIcon = Trophy;
+    
+    if (score === quizData.length) {
+      resultMessage = locale === 'vi' ? '🎉 Hoàn hảo! Bạn là chuyên gia đáng nể!' : 
+                      locale === 'ru' ? '🎉 Идеально! Вы настоящий эксперт!' : 
+                      '🎉 Perfect! You are a true expert!';
+      resultColor = 'from-amber-400 to-yellow-600 dark:from-amber-400 dark:to-yellow-500';
+      iconColor = 'text-amber-500 dark:text-yellow-500';
+      TrophyIcon = Trophy;
+    } else if (score > 4) {
+      resultMessage = locale === 'vi' ? '👍 Rất ổn! Bạn nắm kiến thức khá vững.' : 
+                      locale === 'ru' ? '👍 Хорошо! У вас твердые знания.' : 
+                      '👍 Good! You have a solid grasp.';
+      resultColor = 'from-slate-400 to-slate-600 dark:from-slate-300 dark:to-slate-500';
+      iconColor = 'text-slate-500 dark:text-slate-400';
+      TrophyIcon = Medal;
+    } else {
+      resultMessage = locale === 'vi' ? '💪 Thật tiếc! Cần ôn luyện cố gắng nhiều hơn.' : 
+                      locale === 'ru' ? '💪 Жаль! Нужно больше стараться.' : 
+                      '💪 Try harder! Needs more practice.';
+      resultColor = 'from-orange-600 to-amber-800 dark:from-orange-500 dark:to-amber-700';
+      iconColor = 'text-orange-600 dark:text-orange-500';
+      TrophyIcon = Medal;
+    }
+
     return (
-      <div className="max-w-2xl mx-auto space-y-8 pb-12 pt-8 animate-in fade-in slide-in-from-bottom-4 duration-700 relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] bg-indigo-400/20 dark:bg-indigo-600/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-pulse" />
-        <Card className="text-center py-16 px-6 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border border-neutral-200/50 dark:border-neutral-800/50 shadow-xl rounded-3xl">
-          <Trophy className="w-24 h-24 mx-auto text-amber-500 mb-6 drop-shadow-md" />
-          <h1 className="text-4xl font-bold font-[family-name:var(--font-playfair)] tracking-tight mb-4">{t('quiz.finish')}</h1>
-          <p className="text-xl text-neutral-600 dark:text-neutral-400 font-medium mb-8">
-            {t('quiz.score')} <span className="text-3xl font-black text-blue-600 dark:text-blue-400 mx-2">{score} / {quizData.length}</span>
-          </p>
-          <Button onClick={handleRestart} size="lg" className="rounded-full px-8 bg-blue-600 hover:bg-blue-700 text-white font-bold h-12 shadow-md hover:shadow-lg transition-all active:scale-95">
-            <RefreshCcw className="w-5 h-5 mr-2" />
-            {t('quiz.playAgain')}
-          </Button>
-        </Card>
+      <div className="max-w-md mx-auto space-y-8 pb-12 pt-8 animate-in fade-in zoom-in-95 duration-700 relative">
+        
+        <div className="relative group">
+          <Card className="relative z-10 text-center py-10 px-6 sm:px-8 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-2xl border border-white/50 dark:border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-blue-500/20">
+            <div className="absolute inset-0 z-[-1] bg-gradient-to-b from-white/40 to-transparent dark:from-white/5 pointer-events-none" />
+            
+            <div className="relative mb-6 mt-2">
+              <div className={`w-24 h-24 mx-auto rounded-full bg-gradient-to-tr ${resultColor} p-1 shadow-lg animate-in zoom-in spring duration-700 delay-150`}>
+                <div className="w-full h-full bg-white dark:bg-neutral-900 rounded-full flex items-center justify-center">
+                  <TrophyIcon className={`w-12 h-12 ${iconColor} drop-shadow-sm`} />
+                </div>
+              </div>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl font-black font-[family-name:var(--font-playfair)] tracking-tight mb-2 text-neutral-900 dark:text-neutral-50 drop-shadow-sm">
+              {t('quiz.finish')}
+            </h1>
+            
+            <div className="min-h-[3rem] flex items-center justify-center mb-6">
+              <h2 className={`text-lg sm:text-xl font-bold bg-gradient-to-r ${resultColor} bg-clip-text text-transparent`}>
+                {resultMessage}
+              </h2>
+            </div>
+
+            <div className="bg-neutral-50 dark:bg-neutral-800/50 rounded-2xl p-6 mb-8 mx-auto shadow-inner border border-neutral-200/50 dark:border-neutral-700/50 transform transition duration-500 hover:scale-105">
+              <p className="text-xs font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest mb-2">
+                {t('quiz.score')}
+              </p>
+              <div className="text-5xl sm:text-6xl font-black flex items-baseline justify-center gap-2">
+                <span className={`bg-gradient-to-br ${resultColor} bg-clip-text text-transparent drop-shadow-sm`}>{score}</span>
+                <span className="text-2xl text-neutral-300 dark:text-neutral-600">/</span>
+                <span className="text-3xl text-neutral-400 dark:text-neutral-500">{quizData.length}</span>
+              </div>
+            </div>
+
+            <Button onClick={handleRestart} size="lg" className="w-full sm:w-auto rounded-full px-8 py-6 text-base bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 dark:from-blue-600 dark:to-indigo-600 font-bold h-auto text-white shadow-[0_8px_20px_rgb(37,99,235,0.25)] dark:shadow-[0_8px_20px_rgb(37,99,235,0.15)] transition-all hover:scale-105 active:scale-95 border-none">
+              <RefreshCcw className="w-5 h-5 mr-3 stroke-[2.5]" />
+              {t('quiz.playAgain')}
+            </Button>
+          </Card>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="max-w-3xl mx-auto space-y-8 pb-12 pt-4 md:pt-8 animate-in fade-in duration-500 relative">
-      <div className="absolute top-20 -left-10 md:left-10 w-[20rem] h-[20rem] bg-indigo-400/20 dark:bg-indigo-600/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-pulse" />
-      <div className="absolute bottom-20 -right-10 md:right-10 w-[25rem] h-[25rem] bg-amber-400/10 dark:bg-amber-600/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-pulse delay-700" />
-
       <div className="text-center space-y-4 pt-4 pb-4">
         <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-neutral-900 dark:text-neutral-50 font-[family-name:var(--font-playfair)] drop-shadow-sm">
           {t('quiz.title')}
@@ -321,7 +412,7 @@ export default function QuizPage() {
           })}
 
           {isAnswered && (
-            <div className="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-800 animate-in slide-in-from-bottom-4 fade-in duration-500">
+            <div ref={answerRef} className="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-800 animate-in slide-in-from-bottom-4 fade-in duration-500">
               <div className={`p-5 rounded-2xl mb-6 flex gap-4 items-start shadow-inner ${selectedOpt === currentQ.correctIndex ? 'bg-green-50/80 dark:bg-green-900/20 border border-green-200 dark:border-green-800/50' : 'bg-red-50/80 dark:bg-red-900/20 border border-red-200 dark:border-red-800/50'}`}>
                 {selectedOpt === currentQ.correctIndex ? (
                   <CheckCircle2 className="w-7 h-7 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />

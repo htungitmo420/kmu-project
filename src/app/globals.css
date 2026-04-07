@@ -163,4 +163,27 @@
 .animate-led {
   animation: led-glow 3s linear infinite !important;
   color: #ef4444;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+  mix-blend-mode: normal !important;
+  display: block;
+}
+
+/* Light to Dark: New root is dark (expanding), needs to be on top */
+.dark::view-transition-new(root) {
+  z-index: 10;
+}
+.dark::view-transition-old(root) {
+  z-index: 1;
+}
+
+/* Dark to Light: Old root is dark (shrinking), needs to be on top */
+::view-transition-old(root) {
+  z-index: 10;
+}
+::view-transition-new(root) {
+  z-index: 1;
 }

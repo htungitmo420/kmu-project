@@ -19,8 +19,8 @@ export function HistorySidebar({ onItemClick }: { onItemClick?: () => void }) {
   if (!mounted) return null;
 
   return (
-    <Card className="h-full shadow-[0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)] border-neutral-200/50 dark:border-neutral-800/50 rounded-[2rem] bg-white/70 dark:bg-neutral-950/70 backdrop-blur-3xl overflow-hidden relative">
-      <CardHeader className="flex flex-row items-center justify-between pb-4 pt-6 px-6 space-y-0 border-b border-neutral-100 dark:border-neutral-800/50 bg-neutral-50/50 dark:bg-neutral-900/20">
+    <Card className="h-full shadow-[0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)] border-neutral-200/50 dark:border-neutral-800/50 rounded-[2rem] bg-white/70 dark:bg-neutral-950/70 backdrop-blur-3xl overflow-hidden relative flex flex-col max-h-[600px]">
+      <CardHeader className="flex flex-row items-center justify-between pb-4 pt-6 px-6 space-y-0 border-b border-neutral-100 dark:border-neutral-800/50 bg-neutral-50/50 dark:bg-neutral-900/20 shrink-0">
         <CardTitle className="text-2xl font-bold tracking-tight font-[family-name:var(--font-playfair)] text-neutral-900 dark:text-neutral-100">
           {t('history.title')}
         </CardTitle>
@@ -28,7 +28,7 @@ export function HistorySidebar({ onItemClick }: { onItemClick?: () => void }) {
           <Trash2 className="w-4 h-4 text-neutral-400 group-hover:text-red-500 transition-colors" />
         </Button>
       </CardHeader>
-      <CardContent className="p-4 pt-4">
+      <CardContent className="p-4 pt-4 flex-1 overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-neutral-200 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-800 [&::-webkit-scrollbar-thumb]:rounded-full">
         {history.length === 0 ? (
           <p className="text-sm text-muted-foreground text-center py-8">{t('history.empty')}</p>
         ) : (
