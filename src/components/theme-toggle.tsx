@@ -44,7 +44,7 @@ export function ThemeToggle() {
           clipPath: isDark ? [...clipPath].reverse() : clipPath,
         },
         {
-          duration: 500,
+          duration: 400,
           easing: "ease-out",
           pseudoElement: isDark
             ? "::view-transition-old(root)"
