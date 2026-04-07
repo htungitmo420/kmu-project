@@ -1,25 +1,25 @@
-# 🇷🇺 rUFIO Parser (Russian Name & Etiquette Guide)
+# 🇷🇺 rUFIO Parser & Etiquette Guide
 
-A modern, responsive web application designed to seamlessly parse Russian full names (ФИО: Фамилия, Имя, Отчество) and provide highly contextual etiquette rules for addressing individuals in various scenarios (daily life, formal environments, official documents).
+A modern, highly-responsive web application designed to seamlessly parse Russian full names (ФИО: Фамилия, Имя, Отчество) and provide context-rich etiquette rules for addressing individuals dynamically across daily life, formal environments, and official documents.
 
-## ✨ Core Features
+## ✨ Features
 
-- **Intelligent FIO Parser**: Built-in heuristic algorithms (ported from production-grade bots) to split, validate, and analyze 1-token, 2-token, and 3-token Russian names.
-- **Gender Inference**: Automatically predicts grammatical gender based on Cyrillic patronymic/last name suffixes to correctly adjust situational honorifics.
-- **Short Name Dictionary**: Safely recommends appropriate diminutive/short names for close relationships utilizing a curated vocabulary system.
-- **Etiquette Contextualizer**: Dynamic situational guides (Daily, Formal, Official, Chat) customized precisely to the parsed name outcome.
-- **i18n Multi-Language Support**: Fully localized in Vietnamese (vi), English (en), Russian (ru), and French (fr) using a lightweight context-driven approach.
-- **Local History Tracker**: Browsing history securely cached in the browser's local storage with interactive recovery panels.
-- **Premium User Interface**: Crafted with Tailwind CSS and `shadcn/ui` focusing on clean minimalism, readable typography (`text-balance`), soft shadows, and precise micro-animations.
+- **Intelligent FIO Engine**: Built-in heuristic algorithms to split, validate, and analyze 1-token, 2-token, and 3-token Russian names under complex layouts.
+- **Gender Inference & Diminutives**: Automatically predicts grammatical gender based on Cyrillic patronymic suffixes to adjust honorifics, alongside a curated dictionary for diminutive/short name recommendations.
+- **Dynamic Etiquette Contextualizer**: Generates formatting rules specifically targeted at your parsed name, covering informal chats, business emails, and official guidelines.
+- **Interactive Quiz Minigame**: A tiered knowledge test with dynamic confetti fireworks and gold/silver/bronze medal rankings to challenge your Russian etiquette proficiency.
+- **Immersive UI/UX Design**: Uses experimental View Transition APIs for satisfying ripple-effect Light/Dark mode toggling. Features a global "breathing", translucent ambient blurred background choreographed across all routes.
+- **Pro-grade SEO Architecture**: End-to-end `JSON-LD` `EducationalApplication` Structured Data, robust Next.js localized `alternates` metadata, `robots.txt`, `sitemap.xml`, and strict Semantic HTML `<h1-2>` structures.
+- **Native i18n Localization**: Fully translated and client-ready in Vietnamese (`vi`), English (`en`), Russian (`ru`), and French (`fr`).
+- **Smart History Tracking**: Keeps a localized, stylishly-scrollable cache of up to 10 recent parsed identities for rapid UX recovery.
 
 ## 🚀 Tech Stack
 
-- **Framework**: Next.js 14+ (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Components**: `shadcn/ui`, Radix UI Primitives, Lucide Icons
-- **State Management**: Zustand (with Persist Middleware)
-- **Form Validation**: React Hook Form + Zod
+- **Framework**: Next.js 14+ (App Router, Strict Native SEO Generation)
+- **Styling**: Tailwind CSS v4 + native Oklch variables
+- **Components & Micro-interactions**: `shadcn/ui`, Radix UI, Canvas Confetti, and View Transitions API
+- **State Management**: Zustand (Persist Middleware)
+- **Form Architecture**: React Hook Form + Zod Object Schemas
 
 ## 📦 Getting Started
 
@@ -31,11 +31,11 @@ npm run dev
 # or yarn / pnpm / bun equivalents
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to experience the application.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 🔧 Core Architecture
+## 🤝 Project Team
 
-- **`src/lib/fio-parser.ts`**: The core logic engine driving Cyrillic string processing, fallback token arrangements, and suffix checking.
-- **`src/data/wiki-data.ts`**: The structural content matrix that dynamically binds parsed identities to situational formatting.
-- **`src/lib/i18n/`**: Custom dictionary provider that routes translation changes instantly globally.
-- **`src/components/fio-form.tsx`**: Main interactive component orchestrating Zod validation with parsing results.
+Developed with 💖 from **ITMO University**:
+- [Nguyễn Hoàng Tùng (@htungitmo420)](https://github.com/htungitmo420)
+- [Nguyễn Văn Chính (@chinhtx04)](https://github.com/chinhtx04)
+- [Phan Tấn Dũng (@TanDung233)](https://github.com/TanDung233)
