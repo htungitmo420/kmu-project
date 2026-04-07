@@ -37,10 +37,7 @@ export default function WikiPage() {
 
   return (
     <main className="max-w-5xl mx-auto space-y-12 pb-12 pt-4 md:pt-8 relative">
-      {/* Background ambient orbs */}
-      <div className="absolute top-10 right-0 md:right-1/4 w-[30rem] h-[30rem] bg-emerald-400/20 dark:bg-emerald-600/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-in fade-in duration-1000" />
-      <div className="absolute bottom-40 -left-10 md:left-1/4 w-[25rem] h-[25rem] bg-amber-400/15 dark:bg-amber-600/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-in fade-in duration-1000 delay-700" />
-
+      {/* Background orbs removed */}
       <div className="text-center space-y-6 pt-4 md:pt-12 pb-8">
         <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-neutral-900 dark:text-neutral-50 flex flex-col items-center justify-center gap-4 font-[family-name:var(--font-playfair)] drop-shadow-sm">
           <span className="p-4 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)] border border-neutral-100 dark:border-neutral-800">
